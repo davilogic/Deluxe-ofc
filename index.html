@@ -8,11 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Supabase Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <style>
-        /* =========================================
-           VARIÁVEIS E CONFIGURAÇÕES GERAIS
-           ========================================= */
         :root {
             --primary-red: #ff002b;
             --dark-red: #800015;
@@ -44,9 +43,7 @@
             letter-spacing: 2px;
         }
 
-        /* =========================================
-           TELA DE LOADING (5 SEGUNDOS)
-           ========================================= */
+        /* TELA DE LOADING (5 SEGUNDOS) */
         #loader-screen {
             position: fixed;
             inset: 0;
@@ -138,9 +135,7 @@
             animation: pulseBorder 1.5s infinite alternate;
         }
 
-        /* =========================================
-           BACKGROUNDS FIXOS
-           ========================================= */
+        /* BACKGROUNDS FIXOS */
         .fixed-bg-layer {
             position: fixed;
             inset: 0;
@@ -172,9 +167,7 @@
             pointer-events: none;
         }
 
-        /* =========================================
-           NAVEGAÇÃO
-           ========================================= */
+        /* NAVEGAÇÃO */
         header {
             position: fixed;
             top: 0;
@@ -240,7 +233,6 @@
             text-shadow: 0 0 10px var(--primary-red);
         }
 
-        /* Botão do Painel de Moderador no Menu */
         .btn-mod-access {
             background: rgba(255, 0, 43, 0.2);
             border: 1px solid var(--primary-red);
@@ -259,9 +251,7 @@
             box-shadow: var(--neon-glow);
         }
 
-        /* =========================================
-           SEÇÃO HERO
-           ========================================= */
+        /* SEÇÃO HERO */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -372,9 +362,6 @@
             animation: floatEmblem 4s ease-in-out infinite;
         }
 
-        /* =========================================
-           SEÇÕES E CARDS
-           ========================================= */
         section {
             padding: 90px 8%;
             position: relative;
@@ -603,9 +590,7 @@
             outline: none;
         }
 
-        /* =========================================
-           PAINEL DE MODERAÇÃO (MODAL)
-           ========================================= */
+        /* PAINEL DE MODERAÇÃO (MODAL) */
         #mod-modal {
             position: fixed;
             inset: 0;
@@ -645,9 +630,6 @@
             color: var(--primary-red);
         }
 
-        /* =========================================
-           RODAPÉ
-           ========================================= */
         footer {
             background: #040406;
             border-top: 2px solid var(--primary-red);
@@ -700,9 +682,7 @@
 </head>
 <body>
 
-    <!-- =========================================
-         TELA DE LOADING (5 SEGUNDOS)
-         ========================================= -->
+    <!-- TELA DE LOADING (5 SEGUNDOS) -->
     <div id="loader-screen">
         <div class="loader-wolf-bg"></div>
         <div class="loader-content">
@@ -720,16 +700,12 @@
         </div>
     </div>
 
-    <!-- =========================================
-         BACKGROUNDS FIXOS
-         ========================================= -->
+    <!-- BACKGROUNDS FIXOS -->
     <div class="fixed-bg-layer"></div>
     <div class="fixed-wolf-watermark"></div>
     <canvas id="particles-canvas"></canvas>
 
-    <!-- =========================================
-         CABEÇALHO
-         ========================================= -->
+    <!-- CABEÇALHO -->
     <header>
         <a href="#" class="nav-brand">
             <img src="logo-lobo.jpg" alt="Logo Deluxe OFC">
@@ -747,9 +723,7 @@
         </nav>
     </header>
 
-    <!-- =========================================
-         HERO SECTION
-         ========================================= -->
+    <!-- HERO SECTION -->
     <section class="hero" id="inicio">
         <div class="hero-text reveal">
             <div class="badge-top" id="site-badge">TOP REGIONAL • RUMO AO TOP BRASIL</div>
@@ -771,9 +745,7 @@
         </div>
     </section>
 
-    <!-- =========================================
-         HISTÓRIA E LÍDER DOKA
-         ========================================= -->
+    <!-- HISTÓRIA E LÍDER DOKA -->
     <section id="historia">
         <div class="section-header reveal">
             <h2>A ORIGEM DA <span>ALCATEIA</span></h2>
@@ -807,9 +779,7 @@
         </div>
     </section>
 
-    <!-- =========================================
-         AS 3 GUILDAS DELUXE
-         ========================================= -->
+    <!-- AS 3 GUILDAS DELUXE -->
     <section id="guildas">
         <div class="section-header reveal">
             <h2>IMPÉRIO <span>DELUXE</span> (3 GUILDAS)</h2>
@@ -858,9 +828,7 @@
         </div>
     </section>
 
-    <!-- =========================================
-         GALERIA IN-GAME
-         ========================================= -->
+    <!-- GALERIA IN-GAME -->
     <section id="manto">
         <div class="section-header reveal">
             <h2>NOSSO <span>MANTO</span> & CONQUISTAS</h2>
@@ -902,9 +870,7 @@
         </div>
     </section>
 
-    <!-- =========================================
-         RECRUTAMENTO
-         ========================================= -->
+    <!-- RECRUTAMENTO (LIGADO AO SUPABASE CLOUD) -->
     <section id="recrutamento">
         <div class="section-header reveal">
             <h2>FAÇA PARTE DA <span>DELUXE</span></h2>
@@ -935,9 +901,7 @@
         </div>
     </section>
 
-    <!-- =========================================
-         MODAL DO PAINEL DO MODERADOR (SENHA: 2012)
-         ========================================= -->
+    <!-- MODAL DO PAINEL DO MODERADOR (SENHA OCULTA COM TYPE PASSWORD) -->
     <div id="mod-modal">
         <div class="mod-container">
             <button class="mod-close" onclick="fecharPainelMod()">&times;</button>
@@ -945,7 +909,8 @@
                 <h3 style="color: var(--primary-red); margin-bottom: 20px;">🛡️ PAINEL DE MODERAÇÃO</h3>
                 <p style="margin-bottom: 15px;">Digite a senha de moderador para gerenciar o site:</p>
                 <div class="form-group">
-                    <input type="password" id="mod-password-input" placeholder="Senha (ex: 2012)">
+                    <!-- SENHA OCULTADA COM BOLINHAS PARA SEGURANÇA -->
+                    <input type="password" id="mod-password-input" placeholder="Digite a senha de acesso">
                 </div>
                 <button class="btn-cyber" onclick="tentarLoginMod()" style="width: 100%;">ACESSAR PAINEL</button>
                 <p id="mod-error-msg" style="color: var(--primary-red); margin-top: 10px; font-weight: bold; display: none;">Senha incorreta!</p>
@@ -953,7 +918,7 @@
 
             <div id="mod-dashboard-area" style="display: none;">
                 <h3 style="color: var(--primary-red); margin-bottom: 15px;">⚡ GERENCIADOR DO SITE</h3>
-                <p style="margin-bottom: 20px; font-size: 0.95rem; color: #aaa;">Altere os textos do site rapidamente. (Para salvar permanentemente no GitHub, atualize o arquivo ou conecte ao banco cloud).</p>
+                <p style="margin-bottom: 20px; font-size: 0.95rem; color: #aaa;">Altere os textos do site rapidamente.</p>
                 
                 <div class="form-group">
                     <label>Slogan Principal</label>
@@ -977,19 +942,20 @@
         </div>
     </div>
 
-    <!-- =========================================
-         RODAPÉ
-         ========================================= -->
+    <!-- RODAPÉ -->
     <footer>
         <h3 class="cyber-font" style="color: #fff; font-size: 1.5rem;">DELUXE <span style="color: var(--primary-red);">OFC</span></h3>
         <p>Líder Fundador: <strong>DOKA</strong> • União • Foco • Respeito • Evolução</p>
         <p style="font-size: 0.9rem; margin-top: 15px;">© 2026 DELUXE OFC Free Fire. Nascidos Pra Vencer.</p>
     </footer>
 
-    <!-- =========================================
-         SCRIPTS
-         ========================================= -->
+    <!-- SCRIPTS -->
     <script>
+        // CONFIGURAÇÃO DO SUPABASE CLOUD
+        const SUPABASE_URL = 'https://vhmynaabviqisxxlakyv.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_AsKvcE7ch1wIHIQbhbCXBw_1QMIJXTy';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
         // 1. TELA DE LOADING (5 SEGUNDOS)
         document.addEventListener("DOMContentLoaded", () => {
             const loaderScreen = document.getElementById('loader-screen');
@@ -1017,11 +983,10 @@
                 }
             }, intervalTime);
 
-            // Carrega dados salvos no navegador (caso o mod tenha editado antes)
             carregarDadosSalvos();
         });
 
-        // 2. PAINEL DE MODERAÇÃO (SENHA: 2012)
+        // 2. PAINEL DE MODERAÇÃO
         function abrirPainelMod() {
             document.getElementById('mod-modal').style.display = 'flex';
         }
@@ -1048,19 +1013,17 @@
             const novoG1Nome = document.getElementById('edit-g1-name').value;
             const novoG1Id = document.getElementById('edit-g1-id').value;
 
-            // Atualiza na tela
             document.getElementById('hero-slogan').textContent = novoSlogan;
             document.getElementById('loading-obs-text').textContent = novaObs;
             document.getElementById('g1-nome').textContent = novoG1Nome;
             document.getElementById('g1-id').textContent = novoG1Id;
 
-            // Salva na memória do navegador (localStorage) para manter alterado
             localStorage.setItem('dlx_slogan', novoSlogan);
             localStorage.setItem('dlx_obs', novaObs);
             localStorage.setItem('dlx_g1name', novoG1Nome);
             localStorage.setItem('dlx_g1id', novoG1Id);
 
-            alert('Alterações aplicadas com sucesso no site!');
+            alert('Alterações aplicadas com sucesso!');
             fecharPainelMod();
         }
 
@@ -1097,17 +1060,28 @@
         window.addEventListener('scroll', checkReveal);
         checkReveal();
 
-        // 4. FORMULÁRIO DE RECRUTAMENTO
-        document.getElementById('recruit-form').addEventListener('submit', function(e) {
+        // 4. FORMULÁRIO DE RECRUTAMENTO CONECTADO AO SUPABASE
+        document.getElementById('recruit-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             const nick = document.getElementById('nick').value;
-            const id = document.getElementById('player-id').value;
-            const guild = document.getElementById('guild-choice').value;
+            const player_id = document.getElementById('player-id').value;
+            const guilda = document.getElementById('guild-choice').value;
             const feedback = document.getElementById('form-feedback');
 
+            // Envia para o Banco Cloud Supabase
+            const { data, error } = await supabaseClient
+                .from('recrutamento')
+                .insert([{ nick: nick, player_id: player_id, guilda: guilda }]);
+
             feedback.style.display = 'block';
-            feedback.innerHTML = `Ficha registrada com sucesso, <strong>${nick}</strong> (ID: ${id})! <br>A liderança da <strong>${guild}</strong> analisará seu perfil em breve.`;
-            this.reset();
+            if (error) {
+                feedback.style.color = '#ff002b';
+                feedback.innerHTML = `Erro ao enviar ficha: ${error.message}`;
+            } else {
+                feedback.style.color = '#00ff88';
+                feedback.innerHTML = `Ficha registrada na nuvem com sucesso, <strong>${nick}</strong>! <br>A liderança analisará seu perfil em breve.`;
+                this.reset();
+            }
         });
 
         // 5. PARTÍCULAS VERMELHAS
